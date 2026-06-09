@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keberlanjutan | Pesona Gorontalo Utara</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #003366;
+            --accent-blue: #0077be;
+            --primary-gold: #d4af37;
+            --white: #ffffff;
+            --text-dark: #333333;
+            --transition: all 0.3s ease-in-out;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #fafafa;
+            overflow-x: hidden;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        h1, h2, h3, h4, .logo { font-family: 'Playfair Display', serif; font-weight: 700; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
+
+        /* Navbar with Dropdown */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            background: var(--primary-blue);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            z-index: 1000;
+            color: var(--white);
+        }
+
+        .logo { font-size: 1.5rem; letter-spacing: 1px; }
+        .logo span { color: var(--primary-gold); }
+
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-item { position: relative; }
+        .nav-links > li > a {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--white);
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Dropdown Styling */
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--white);
+            min-width: 200px;
+            box-shadow: var(--shadow);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+            padding: 10px 0;
+        }
+
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown li a {
+            color: var(--text-dark);
+            padding: 10px 20px;
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: capitalize;
+        }
+
+        .dropdown li a:hover {
+            background: #f4f4f4;
+            color: var(--primary-gold);
+            padding-left: 25px;
+        }
+
+        .nav-links a.active { color: var(--primary-gold); }
+        .menu-btn { display: none; font-size: 1.5rem; cursor: pointer; }
+
+        /* Hero Subpage */
+        .hero-sub {
+            height: 40vh;
+            width: 100%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            background: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 51, 102, 0.7)), url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            margin-top: 60px;
+        }
+
+        .hero-sub h1 { font-size: 3rem; }
+
+        /* Content */
+        section { padding: 80px 8%; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.5rem; color: var(--primary-blue); }
+        .underline { width: 80px; height: 4px; background: var(--primary-gold); margin: 15px auto; }
+
+        .eco-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .eco-card { background: white; padding: 40px; border-radius: 20px; box-shadow: var(--shadow); text-align: center; }
+        .eco-card i { font-size: 3rem; color: #2ecc71; margin-bottom: 20px; }
+        .eco-card h3 { color: var(--primary-blue); margin-bottom: 15px; }
+
+        footer { background: #0a0a0a; color: var(--white); padding: 40px 8% 20px; text-align: center; }
+
+        /* Mobile Nav */
+        .mobile-nav { position: fixed; top: 0; right: -100%; width: 80%; height: 100vh; background: var(--primary-blue); z-index: 2000; display: flex; flex-direction: column; padding: 50px; transition: 0.5s; overflow-y: auto; }
+        .mobile-nav.active { right: 0; }
+        .mobile-nav a { color: var(--white); font-size: 1.1rem; margin-bottom: 15px; font-weight: 600; }
+        .mobile-nav .close-btn { align-self: flex-end; font-size: 2rem; margin-bottom: 30px; cursor: pointer; }
+
+        @media (max-width: 992px) {
+            .nav-links { display: none; }
+            .menu-btn { display: block; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">PESONA<span>GORUT</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">Beranda</a></li>
+            <li class="nav-item">
+                <a href="#">Jelajah <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+                <ul class="dropdown">
+                    <li><a href="destinasi.html">Destinasi</a></li>
+                    <li><a href="aktivitas.html">Aktivitas</a></li>
+                    <li><a href="budaya.html">Budaya</a></li>
+                    <li><a href="kuliner.html">Kuliner</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="#">Perjalanan <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+                <ul class="dropdown">
+                    <li><a href="itinerary.html">Itinerary</a></li>
+                    <li><a href="akomodasi.html">Akomodasi</a></li>
+                    <li><a href="perencanaan.html">Perencanaan</a></li>
+                    <li><a href="pemesanan.html">Pemesanan</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="active">Info <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+                <ul class="dropdown">
+                    <li><a href="keberlanjutan.html">Keberlanjutan</a></li>
+                    <li><a href="galeri.html">Galeri</a></li>
+                    <li><a href="berita.html">Berita</a></li>
+                    <li><a href="bantuan.html">Bantuan</a></li>
+                </ul>
+            </li>
+            <li><a href="kontak.html">Kontak</a></li>
+        </ul>
+        <div class="menu-btn"><i class="fas fa-bars"></i></div>
+    </nav>
+
+    <header class="hero-sub">
+        <div class="hero-content">
+            <h1>Pariwisata Berkelanjutan</h1>
+            <p>Menjaga keindahan alam Gorontalo Utara untuk generasi mendatang.</p>
+        </div>
+    </header>
+
+    <section>
+        <div class="section-title">
+            <h2>Komitmen Kami</h2>
+            <div class="underline"></div>
+        </div>
+        <div class="eco-grid">
+            <div class="eco-card">
+                <i class="fas fa-leaf"></i>
+                <h3>Pelestarian Alam</h3>
+                <p>Melindungi ekosistem terumbu karang dan hutan bakau melalui program konservasi aktif.</p>
+            </div>
+            <div class="eco-card">
+                <i class="fas fa-users"></i>
+                <h3>Pemberdayaan Lokal</h3>
+                <p>Melibatkan masyarakat lokal dalam pengelolaan wisata untuk meningkatkan kesejahteraan ekonomi.</p>
+            </div>
+            <div class="eco-card">
+                <i class="fas fa-recycle"></i>
+                <h3>Bebas Plastik</h3>
+                <p>Mengajak wisatawan untuk mengurangi penggunaan plastik sekali pakai selama berkunjung.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-bottom">
+            &copy; 2026 Dinas Pariwisata Gorontalo Utara.
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuBtn = document.querySelector('.menu-btn');
+            const mobileNav = document.createElement('div');
+            mobileNav.className = 'mobile-nav';
+            mobileNav.innerHTML = `
+                <div class="close-btn">&times;</div>
+                <a href="index.html">Beranda</a>
+                <a href="destinasi.html">Destinasi</a>
+                <a href="aktivitas.html">Aktivitas</a>
+                <a href="budaya.html">Budaya</a>
+                <a href="kuliner.html">Kuliner</a>
+                <a href="itinerary.html">Itinerary</a>
+                <a href="akomodasi.html">Akomodasi</a>
+                <a href="perencanaan.html">Perencanaan</a>
+                <a href="pemesanan.html">Pemesanan</a>
+                <a href="keberlanjutan.html">Keberlanjutan</a>
+                <a href="galeri.html">Galeri</a>
+                <a href="berita.html">Berita</a>
+                <a href="bantuan.html">Bantuan</a>
+                <a href="kontak.html">Kontak</a>
+            `;
+            document.body.appendChild(mobileNav);
+
+            menuBtn.addEventListener('click', () => mobileNav.classList.add('active'));
+            mobileNav.querySelector('.close-btn').addEventListener('click', () => mobileNav.classList.remove('active'));
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.eco-card, .section-title').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.6s ease-out';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
